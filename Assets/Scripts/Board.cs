@@ -67,6 +67,7 @@ public class Board : MonoBehaviour
                     if (space.GetComponent<BoardSpace>()._spaceColor == SpaceColor.black)
                     {
                         whitePiece.currentSpace = space.GetComponent<BoardSpace>();
+                        space.GetComponent<BoardSpace>().SetCurrentPiece(whitePiece.gameObject);
                         whitePiece._color = SpaceColor.white;
                         whitePiece.isKing = false;
                         whitePiece.gameObject.transform.position = spaceLocation;
@@ -89,6 +90,7 @@ public class Board : MonoBehaviour
                     if (space.GetComponent<BoardSpace>()._spaceColor == SpaceColor.black)
                     {
                         blackPiece.currentSpace = space.GetComponent<BoardSpace>();
+                        space.GetComponent<BoardSpace>().SetCurrentPiece(blackPiece.gameObject);
                         blackPiece._color = SpaceColor.black;
                         blackPiece.isKing = false;
                         blackPiece.gameObject.transform.position = spaceLocation;
