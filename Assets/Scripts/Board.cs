@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    List<BoardSpace> board;
+    public List<BoardSpace> board;
+    //piece prefabs
     public GameObject blackPiece;
     public GameObject whitePiece;
+    //space prefabs
     public BoardSpace whiteSpace;
     public BoardSpace blackSpace;
+    //List of pieces
+    public List<Piece> whitePieces;
+    public List<Piece> blackPieces;
+
+    private Vector3 spaceLocation;
     // Start is called before the first frame update
     void Start()
     {
         board = new List<BoardSpace>();
+        whitePieces = new List<Piece>();
+        blackPieces = new List<Piece>();
+        spaceLocation = whiteSpace.transform.position;
         PopulateBoard();
     }
 
@@ -25,7 +35,20 @@ public class Board : MonoBehaviour
 
     void SpawnPieces()
     {
+        for (int y = 0; y < 8; y++)
+        {
+            for (int x = 0; x < 8; x++)
+            {
+                if(y<3)
+                {
 
+                }
+                else if( y>=5)
+                {
+
+                }
+            }
+        }
     }
 
 
