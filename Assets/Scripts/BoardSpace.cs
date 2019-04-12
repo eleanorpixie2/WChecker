@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-    public enum SpaceColor { black,white};
+public enum SpaceColor { black, white};
+
 public class BoardSpace
 {
     public GameObject currentPiece { get; private set; }
