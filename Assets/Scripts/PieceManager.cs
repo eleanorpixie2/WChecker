@@ -9,7 +9,7 @@ public class PieceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //boardRef = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
+        boardRef = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
     }
 
     // Update is called once per frame
