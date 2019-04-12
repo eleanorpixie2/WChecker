@@ -10,7 +10,7 @@ public class BoardSpace
     public SpaceColor _spaceColor;
     public Vector2 location;
 
-    public BoardSpace(SpaceColor color, Vector2 loc)
+    public void SetInital(SpaceColor color, Vector2 loc)
     {
         _spaceColor = color;
         location = loc;
