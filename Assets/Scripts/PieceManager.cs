@@ -9,19 +9,36 @@ public class PieceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        boardRef = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
+        //boardRef = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
+        selectedPiece = null;
     }
 
+    
     // Update is called once per frame
     void Update()
     {
+        CheckForClick();
+    }
+
+    private void CheckForClick()
+    {
         if (Input.GetMouseButtonDown(0))
-        { // if left button pressed...
+        {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+
+            if (Physics.Raycast(ray, out hit) && selectedPiece == null)
             {
-                print("Was clicked");
+                selectedPiece = hit.collider.gameObject;
+            }
+            else if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject.GetComponent<BoardSpace>())
+                {
+                    selectedPiece.transform.position = hit.collider.gameObject.GetComponent<BoxCollider>().transform.position;
+                    selectedPiece = null;
+                }
+                
             }
         }
     }
