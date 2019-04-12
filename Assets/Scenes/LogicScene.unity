@@ -225,9 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   board: []
-  blackPiece: {fileID: 4841629740160030748, guid: e845e528c62ebcd4db2b6ebb51f61419,
+  blackPiece: {fileID: 2387070015881538402, guid: 2b8ad99ab5fc819428e6b7bb5afdadca,
     type: 3}
-  whitePiece: {fileID: 2435718278586328862, guid: cd62d3f2329542a43bfaab68c04a2752,
+  whitePiece: {fileID: 4624882710236518769, guid: a8652bface4f8ac4c8ece4c5cba84c34,
     type: 3}
   whiteSpace: {fileID: 799403992000208696, guid: b84d516a7971c0742afb20bb1c9203ca,
     type: 3}
@@ -310,13 +310,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.17995793, y: -0, z: -0, w: 0.9836743}
-  m_LocalPosition: {x: 1.39, y: 5.52, z: -10.1}
+  m_LocalRotation: {x: 0.2152756, y: -0.67354023, z: 0.21527565, w: 0.67354023}
+  m_LocalPosition: {x: 9.32, y: 5.15, z: -0.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20.735, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35.45, y: -90.00001, z: 0}
 --- !u!1001 &1969104075
 PrefabInstance:
   m_ObjectHideFlags: 0
