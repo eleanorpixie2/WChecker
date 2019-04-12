@@ -7,6 +7,8 @@ public class Board : MonoBehaviour
     List<BoardSpace> board;
     public GameObject blackPiece;
     public GameObject whitePiece;
+    public BoardSpace whiteSpace;
+    public BoardSpace blackSpace;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,31 +31,43 @@ public class Board : MonoBehaviour
 
     void PopulateBoard()
     {
+        //y-cooridnate on grid
         for (int i = 0; i < 8; i++)
         {
+            //x-coordinate on grid
             for (int j = 0; j < 8; j++)
             {
+                //all even rows
                 if (i%2 == 0)
                 {
+                    //even column
                     if (j%2 == 0)
                     {
-                        board.Add(new BoardSpace(SpaceColor.white, new Vector2(j, i)));
+                        whiteSpace.SetInital(SpaceColor.white, new Vector2(j, i));
+                        board.Add(whiteSpace);
                     }
+                    //odd column
                     else
                     {
-                        board.Add(new BoardSpace(SpaceColor.black, new Vector2(j, i)));
+                        blackSpace.SetInital(SpaceColor.black, new Vector2(j, i));
+                        board.Add(whiteSpace);
                     }
                 }
+                //all odd rows
                 else
                 {
+                    //even column
                     if (j % 2 == 0)
                     {
-                        board.Add(new BoardSpace(SpaceColor.black, new Vector2(j, i)));
+                        blackSpace.SetInital(SpaceColor.black, new Vector2(j, i));
+                        board.Add(whiteSpace);
 
                     }
+                    //odd column
                     else
                     {
-                        board.Add(new BoardSpace(SpaceColor.white, new Vector2(j, i)));
+                        whiteSpace.SetInital(SpaceColor.white, new Vector2(j, i));
+                        board.Add(whiteSpace);
                     }
                 }
             }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
     public enum SpaceColor { black,white};
-public class BoardSpace
+public class BoardSpace : MonoBehaviour
 {
     public GameObject currentPiece { get; private set; }
     public SpaceColor _spaceColor;
     public Vector2 location;
 
-    public BoardSpace(SpaceColor color, Vector2 loc)
+    public void SetInital(SpaceColor color, Vector2 loc)
     {
         _spaceColor = color;
         location = loc;
