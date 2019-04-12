@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SpaceColor { black, white};
 
-public class BoardSpace
+public class BoardSpace:MonoBehaviour
 {
     public GameObject currentPiece { get; private set; }
     public SpaceColor _spaceColor;
