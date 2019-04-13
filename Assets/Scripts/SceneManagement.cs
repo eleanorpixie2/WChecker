@@ -24,9 +24,7 @@ public class SceneManagement : MonoBehaviour
     {
         //dont destroy this game object
         DontDestroyOnLoad(this);
-
-        //set default resolution
-        Camera.main.aspect = (5f / 4f);
+        Screen.SetResolution(1920, 1080, false);
         //create code for buttons, buttons only work if there is an object attached to it
         if (StartButton1 != null)
         {
@@ -55,8 +53,6 @@ public class SceneManagement : MonoBehaviour
         }
         if (RestartButton != null)
         {
-            Button btn4 = RestartButton.GetComponent<Button>();
-            btn4.onClick.AddListener(TaskOnClick4);
         }
     }
 
@@ -93,12 +89,7 @@ public class SceneManagement : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
-    //loads checkpoint
-    void TaskOnClick4()
-    {
-        source.PlayOneShot(click, .5f);
-        SceneManager.LoadScene("Level");
-    }
+
 
     //loads game
     public static void TaskOnClick5()
