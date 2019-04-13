@@ -500,6 +500,11 @@ PrefabInstance:
       propertyPath: MenuButton
       value: 
       objectReference: {fileID: 2013523136}
+    - target: {fileID: 3001101876953730102, guid: d6cb6aa468d94ba4e908f09be771352f,
+        type: 3}
+      propertyPath: click
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6cb6aa468d94ba4e908f09be771352f, type: 3}
 --- !u!1 &1688801644

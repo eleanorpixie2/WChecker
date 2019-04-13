@@ -3,7 +3,15 @@ guid: 1637bac546732e94bbd12055da996a52
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - StartButton1: {instanceID: 0}
+  - StartButton2: {instanceID: 0}
+  - ExitButton: {instanceID: 0}
+  - MenuButton: {instanceID: 0}
+  - CreditsButton: {instanceID: 0}
+  - RestartButton: {instanceID: 0}
+  - click: {fileID: 8300000, guid: 3c9de2fea167900499670e6a1298379d, type: 3}
+  - source: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
