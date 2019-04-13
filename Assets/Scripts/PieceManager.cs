@@ -13,6 +13,9 @@ public class PieceManager : MonoBehaviour
     void Start()
     {
         boardRef = GetComponent<Board>();
+        boardRef.spaceLocation = boardRef.whiteSpace.transform.position;
+        boardRef.intialX = boardRef.spaceLocation.x;
+        boardRef.PopulateBoard();
         boardRef.SpawnPieces();
         selectedPiece = null;
     }

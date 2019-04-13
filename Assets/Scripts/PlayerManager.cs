@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     //UI text
     public Text whiteNumTxt;
     public Text blackNumTxt;
+    public Text turnText;
     public Camera whitePiecesSide;
     public colorTurn currentTurn;
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class PlayerManager : MonoBehaviour
         numberOfBlackPiecesOnBoard = 12;
         blackNumTxt.text = $"Black Left: {numberOfBlackPiecesOnBoard}";
         whiteNumTxt.text = $"White Left: {numberOfWhitePiecesOnBoard}";
+        turnText.text = $"Player Turn: {currentTurn}";
         currentTurn = colorTurn.white;
         whitePiecesSide = Camera.main;
         currentPos = whitePiecesSide.transform.position;
@@ -39,14 +41,14 @@ public class PlayerManager : MonoBehaviour
     {
         //CameraRotation();
         //currentPos = whitePiecesSide.transform.position;
-
+        turnText.text = $"Player Turn: {currentTurn}";
         if (numberOfBlackPiecesOnBoard <= 0)
         {
-            //lose
+            SceneManagement.GameOver();
         }
         else if (numberOfWhitePiecesOnBoard <= 0)
         {
-            //lose
+            SceneManagement.Win();
         }
         //if(currentTurn==colorTurn.white)
         //{

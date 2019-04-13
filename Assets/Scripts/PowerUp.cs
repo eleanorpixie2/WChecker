@@ -79,8 +79,8 @@ public class PowerUp : MonoBehaviour
             p._color = SpaceColor.black;
             p.isKing = false;
             blackPiece.gameObject.transform.position = space.transform.position;
-            GameObject piece = (GameObject)PrefabUtility.InstantiatePrefab(blackPiece);
-            PrefabUtility.UnpackPrefabInstance(piece, PrefabUnpackMode.Completely, InteractionMode.UserAction);
+            GameObject piece = Instantiate(blackPiece);
+            //PrefabUtility.UnpackPrefabInstance(piece, PrefabUnpackMode.Completely, InteractionMode.UserAction);
             space.GetComponent<BoardSpace>().SetCurrentPiece(piece);
             playerManager.numberOfBlackPiecesOnBoard++;
             playerManager.UpdateText();
@@ -108,8 +108,8 @@ public class PowerUp : MonoBehaviour
             p._color = SpaceColor.white;
             p.isKing = false;
             whitePiece.gameObject.transform.position = space.transform.position;
-            GameObject piece = (GameObject)PrefabUtility.InstantiatePrefab(whitePiece);
-            PrefabUtility.UnpackPrefabInstance(piece, PrefabUnpackMode.Completely, InteractionMode.UserAction);
+            GameObject piece = Instantiate(whitePiece);
+            //PrefabUtility.UnpackPrefabInstance(piece, PrefabUnpackMode.Completely, InteractionMode.UserAction);
             space.GetComponent<BoardSpace>().SetCurrentPiece(piece);
             playerManager.numberOfWhitePiecesOnBoard++;
             playerManager.UpdateText();

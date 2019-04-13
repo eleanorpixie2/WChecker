@@ -10,23 +10,20 @@ public class Board : MonoBehaviour
     public Piece blackPiece;
     public Piece whitePiece;
     //space prefabs
-    public BoardSpace whiteSpace;
-    public BoardSpace blackSpace;
+    public GameObject whiteSpace;
+    public GameObject blackSpace;
     //List of pieces
     public List<Piece> whitePieces;
     public List<Piece> blackPieces;
     //space location in scene
-    private Vector3 spaceLocation;
-    private float intialX;
+    public Vector3 spaceLocation;
+    public float intialX;
     // Start is called before the first frame update
     void Start()
     {
         whitePieces = new List<Piece>();
         blackPieces = new List<Piece>();
-        spaceLocation = whiteSpace.transform.position;
-        intialX = spaceLocation.x;
-        PopulateBoard();
-        board = GameObject.FindGameObjectsWithTag("Space");
+
 
         //SpawnPieces();
     }
@@ -39,8 +36,10 @@ public class Board : MonoBehaviour
 
     GameObject GetSpace(int x, int y)
     {
+
+        board = GameObject.FindGameObjectsWithTag("Space");
         //find correct object based on grid location
-        foreach(GameObject space in board)
+        foreach (GameObject space in board)
         {
             if(space.GetComponent<BoardSpace>().location==new Vector2(x,y))
             {
@@ -72,8 +71,8 @@ public class Board : MonoBehaviour
                         whitePiece.isKing = false;
                         whitePiece.gameObject.transform.position = spaceLocation;
                         whitePieces.Add(whitePiece);
-                        GameObject piece = (GameObject)PrefabUtility.InstantiatePrefab(whitePiece.gameObject);
-                        PrefabUtility.UnpackPrefabInstance(piece, PrefabUnpackMode.Completely, InteractionMode.UserAction);
+                        GameObject piece = Instantiate(whitePiece.gameObject);
+                        //PrefabUtility.UnpackPrefabInstance(piece, PrefabUnpackMode.Completely, InteractionMode.UserAction);
                         space.GetComponent<BoardSpace>().SetCurrentPiece(piece);
                     }
                 }
@@ -96,8 +95,8 @@ public class Board : MonoBehaviour
                         blackPiece.isKing = false;
                         blackPiece.gameObject.transform.position = spaceLocation;
                         blackPieces.Add(blackPiece);
-                        GameObject piece = (GameObject)PrefabUtility.InstantiatePrefab(blackPiece.gameObject);
-                        PrefabUtility.UnpackPrefabInstance(piece, PrefabUnpackMode.Completely, InteractionMode.UserAction);
+                        GameObject piece = Instantiate(blackPiece.gameObject);
+                        //PrefabUtility.UnpackPrefabInstance(piece, PrefabUnpackMode.Completely, InteractionMode.UserAction);
                         space.GetComponent<BoardSpace>().SetCurrentPiece(piece);
                     }
                 }
@@ -112,7 +111,7 @@ public class Board : MonoBehaviour
     }
 
 
-    void PopulateBoard()
+    public void PopulateBoard()
     {
         //y-cooridnate on grid
         for (int i = 0; i < 8; i++)
@@ -126,14 +125,14 @@ public class Board : MonoBehaviour
                     //even column
                     if (j%2 == 0)
                     {
-                        whiteSpace.SetInital(SpaceColor.white, new Vector2(j, i));
-                        Instantiate(whiteSpace.gameObject);
+                        whiteSpace.GetComponent<BoardSpace>().SetInital(SpaceColor.white, new Vector2(j, i));
+                        Instantiate(whiteSpace);
                     }
                     //odd column
                     else
                     {
-                        blackSpace.SetInital(SpaceColor.black, new Vector2(j, i));
-                        Instantiate(blackSpace.gameObject);
+                        blackSpace.GetComponent<BoardSpace>().SetInital(SpaceColor.black, new Vector2(j, i));
+                        Instantiate(blackSpace);
 
                     }
                 }
@@ -143,15 +142,15 @@ public class Board : MonoBehaviour
                     //even column
                     if (j % 2 == 0)
                     {
-                        blackSpace.SetInital(SpaceColor.black, new Vector2(j, i));
-                        Instantiate(blackSpace.gameObject);
+                        blackSpace.GetComponent<BoardSpace>().SetInital(SpaceColor.black, new Vector2(j, i));
+                        Instantiate(blackSpace);
 
                     }
                     //odd column
                     else
                     {
-                        whiteSpace.SetInital(SpaceColor.white, new Vector2(j, i));
-                        Instantiate(whiteSpace.gameObject);
+                        whiteSpace.GetComponent<BoardSpace>().SetInital(SpaceColor.white, new Vector2(j, i));
+                        Instantiate(whiteSpace);
 
                     }
                 }

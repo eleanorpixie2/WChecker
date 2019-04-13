@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerOneWins.unity
     guid: fa0327a6b8fb58044a0fc50ea9edf0d2
+  - enabled: 1
+    path: Assets/Scenes/PlayerTwoWins.unity
+    guid: b2e78bc553f457846a44888d90468c43
+  - enabled: 1
+    path: Assets/Scenes/LogicScene.unity
+    guid: cf523bf3fc8ed954e95756189da631dd
   m_configObjects: {}
