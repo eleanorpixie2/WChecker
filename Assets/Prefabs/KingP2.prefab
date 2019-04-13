@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1831125902880030075}
   - component: {fileID: 3735515348215239032}
+  - component: {fileID: 1951371627994041524}
   m_Layer: 0
   m_Name: KingP2
   m_TagString: Player
@@ -55,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3092739138834655849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.646, y: 1.5, z: -2.193}
+  m_LocalPosition: {x: 7.18, y: 1.44, z: 3.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1587053873798216520}
@@ -77,6 +78,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.08, y: 0.25, z: 0}
+--- !u!114 &1951371627994041524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3092739138834655849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922a3284a18c9b24897f84613c7a51da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: 1
+  currentSpace: {fileID: 0}
+  isKing: 1
 --- !u!1 &5863656951068957724
 GameObject:
   m_ObjectHideFlags: 0
