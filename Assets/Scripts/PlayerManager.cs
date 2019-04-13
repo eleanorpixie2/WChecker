@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CameraRotation();
+        //CameraRotation();
         //currentPos = whitePiecesSide.transform.position;
 
         if (numberOfBlackPiecesOnBoard <= 0)
@@ -77,14 +77,13 @@ public class PlayerManager : MonoBehaviour
 
     public void RemovePieceFromBoard(Piece bp, BoardSpace bs)
     {
-        print($"Piece: {bp}, BoardSpace: {bs}");
         //if black then decrease the number of pieces and update text accordingly
         if(bp._color==SpaceColor.black)
         {
             numberOfBlackPiecesOnBoard--;
             Destroy(bp.gameObject);
             bs.SetCurrentPiece();
-            blackNumTxt.text = $"Black Left: {numberOfBlackPiecesOnBoard}";
+            UpdateText();
         }
         //if white then decrease the number of pieces and update text accordingly
         else if(bp._color==SpaceColor.white)
@@ -92,7 +91,13 @@ public class PlayerManager : MonoBehaviour
             numberOfWhitePiecesOnBoard--;
             Destroy(bp.gameObject);
             bs.SetCurrentPiece();
-            whiteNumTxt.text = $"White Left: {numberOfWhitePiecesOnBoard}";
+            UpdateText();
         }
+    }
+
+    public void UpdateText()
+    {
+        blackNumTxt.text = $"Black Left: {numberOfBlackPiecesOnBoard}";
+        whiteNumTxt.text = $"White Left: {numberOfWhitePiecesOnBoard}";
     }
 }
