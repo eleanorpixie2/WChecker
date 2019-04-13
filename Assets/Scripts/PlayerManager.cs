@@ -37,23 +37,14 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        degrees = 20 * Time.deltaTime;
+        CameraRotation();
+        //currentPos = whitePiecesSide.transform.position;
 
-        if (currentTurn == colorTurn.white)
-        {
-            whitePiecesSide.transform.RotateAround(new Vector3(2.13f, 0), Vector3.up, degrees);
-        }
-        else if (currentTurn == colorTurn.black)
-        {
-            whitePiecesSide.transform.RotateAround(new Vector3(2.13f, 0), Vector3.up, degrees);
-        }
-        currentPos = whitePiecesSide.transform.position;
-
-        if (numberOfBlackPiecesOnBoard<=0)
+        if (numberOfBlackPiecesOnBoard <= 0)
         {
             //lose
         }
-        else if(numberOfWhitePiecesOnBoard<=0)
+        else if (numberOfWhitePiecesOnBoard <= 0)
         {
             //lose
         }
@@ -68,6 +59,20 @@ public class PlayerManager : MonoBehaviour
         //    //whitePiecesSide.enabled = false;
         //    //blackPiecesSide.enabled = true;
         //}
+    }
+
+    private void CameraRotation()
+    {
+        degrees = 20 * Time.deltaTime;
+
+        if (currentTurn == colorTurn.white)
+        {
+            whitePiecesSide.transform.RotateAround(new Vector3(2.13f, 0), Vector3.up, degrees);
+        }
+        else if (currentTurn == colorTurn.black)
+        {
+            whitePiecesSide.transform.RotateAround(new Vector3(2.13f, 0), Vector3.up, degrees);
+        }
     }
 
     public void RemovePieceFromBoard(Piece bp, BoardSpace bs)
