@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum colorTurn { black,white};
 public class PlayerManager : MonoBehaviour
 {
     //number of pieces on the board for each side
@@ -11,6 +12,9 @@ public class PlayerManager : MonoBehaviour
     //UI text
     public Text whiteNumTxt;
     public Text blackNumTxt;
+    public Camera whitePiecesSide;
+    public Camera blackPiecesSide;
+    public colorTurn currentTurn;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +23,9 @@ public class PlayerManager : MonoBehaviour
         numberOfBlackPiecesOnBoard = 12;
         blackNumTxt.text = $"Black Left: {numberOfBlackPiecesOnBoard}";
         whiteNumTxt.text = $"White Left: {numberOfWhitePiecesOnBoard}";
+        currentTurn = colorTurn.white;
+        whitePiecesSide.enabled = true;
+        blackPiecesSide.enabled = false;
     }
 
     // Update is called once per frame
@@ -31,6 +38,16 @@ public class PlayerManager : MonoBehaviour
         else if(numberOfWhitePiecesOnBoard<=0)
         {
             //lose
+        }
+        if(currentTurn==colorTurn.white && !whitePiecesSide.enabled)
+        {
+            whitePiecesSide.enabled = true;
+            blackPiecesSide.enabled = false;
+        }
+        else if (currentTurn == colorTurn.black && !blackPiecesSide.enabled)
+        {
+            whitePiecesSide.enabled = false;
+            blackPiecesSide.enabled = true;
         }
     }
 

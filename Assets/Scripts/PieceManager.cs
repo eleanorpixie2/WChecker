@@ -81,20 +81,22 @@ public class PieceManager : MonoBehaviour
             && pieceToMove.currentSpace.location.y - 1 == spaceToMove.location.y)
         {
             //check for which way it is moving so that it can't go backwards
-            if (pieceToMove._color == SpaceColor.white)
+            if (pieceToMove._color == SpaceColor.white && playerManager.currentTurn==colorTurn.white)
             {
                 //only move if the piece is a king and the space is empty
                 if (pieceToMove.isKing && spaceToMove.currentPiece == null)
                 {
                     valid = true;
+                    playerManager.currentTurn = colorTurn.black;
                 }
             }
             else
             {
                 //move forward if the space is empty
-                if (spaceToMove.currentPiece == null)
+                if (spaceToMove.currentPiece == null && playerManager.currentTurn == colorTurn.black)
                 {
                     valid = true;
+                    playerManager.currentTurn = colorTurn.white;
                     if (spaceToMove.location.y == 0 && !pieceToMove.isKing)
                     {
                         KingPiece(selectedPiece);
@@ -108,20 +110,22 @@ public class PieceManager : MonoBehaviour
             && pieceToMove.currentSpace.location.y + 1 == spaceToMove.location.y)
         {
             //check for which way it is moving so that it can't go backwards
-            if (pieceToMove._color == SpaceColor.black)
+            if (pieceToMove._color == SpaceColor.black && playerManager.currentTurn == colorTurn.black)
             {
                 //only move if the piece is a king and the space is empty
                 if (pieceToMove.isKing && spaceToMove.currentPiece == null)
                 {
                     valid = true;
+                    playerManager.currentTurn = colorTurn.white;
                 }
             }
             else
             {
                 //move forward if the space is empty
-                if (spaceToMove.currentPiece == null)
+                if (spaceToMove.currentPiece == null && playerManager.currentTurn == colorTurn.white)
                 {
                     valid = true;
+                    playerManager.currentTurn = colorTurn.black;
                     if (spaceToMove.location.y == 7 && !pieceToMove.isKing)
                     {
                         KingPiece(selectedPiece);
@@ -135,20 +139,22 @@ public class PieceManager : MonoBehaviour
         && pieceToMove.currentSpace.location.y - 1 == spaceToMove.location.y)
         {
             //check for which way it is moving so that it can't go backwards
-            if (pieceToMove._color == SpaceColor.white)
+            if (pieceToMove._color == SpaceColor.white && playerManager.currentTurn == colorTurn.white)
             {
                 //only move if the piece is a king and the space is empty
                 if (pieceToMove.isKing && spaceToMove.currentPiece == null)
                 {
                     valid = true;
+                    playerManager.currentTurn = colorTurn.black;
                 }
             }
             else
             {
                 //move forward if the space is empty
-                if (spaceToMove.currentPiece == null)
+                if (spaceToMove.currentPiece == null && playerManager.currentTurn == colorTurn.black)
                 {
                     valid = true;
+                    playerManager.currentTurn = colorTurn.white;
                     if (spaceToMove.location.y == 0 && !pieceToMove.isKing)
                     {
                         KingPiece(selectedPiece);
@@ -162,20 +168,22 @@ public class PieceManager : MonoBehaviour
         && pieceToMove.currentSpace.location.y + 1 == spaceToMove.location.y)
         {
             //check for which way it is moving so that it can't go backwards
-            if (pieceToMove._color == SpaceColor.black)
+            if (pieceToMove._color == SpaceColor.black && playerManager.currentTurn == colorTurn.black)
             {
                 //only move if the piece is a king and the space is empty
                 if (pieceToMove.isKing && spaceToMove.currentPiece == null)
                 {
                     valid = true;
+                    playerManager.currentTurn = colorTurn.white;
                 }
             }
             else
             {
                 //move forward if the space is empty
-                if (spaceToMove.currentPiece == null)
+                if (spaceToMove.currentPiece == null && playerManager.currentTurn == colorTurn.white)
                 {
                     valid = true;
+                    playerManager.currentTurn = colorTurn.black;
                     if (spaceToMove.location.y == 7 && !pieceToMove.isKing)
                     {
                         KingPiece(selectedPiece);
@@ -195,13 +203,14 @@ public class PieceManager : MonoBehaviour
                 if (checkSpace.currentPiece != null && spaceToMove.currentPiece == null)
                 {
                     //check direction and back only if king
-                    if (pieceToMove._color == SpaceColor.black)
+                    if (pieceToMove._color == SpaceColor.black && playerManager.currentTurn == colorTurn.black)
                     {
                         if (pieceToMove.isKing)
                         {
                             if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color)
                             {
                                 valid = true;
+                                playerManager.currentTurn = colorTurn.white;
                                 playerManager.RemovePieceFromBoard(checkSpace.currentPiece);
                             }
                         }
@@ -209,9 +218,10 @@ public class PieceManager : MonoBehaviour
                     else
                     {
                         //check to make sure that the pieces aren't of the same color
-                        if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color)
+                        if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color && playerManager.currentTurn == colorTurn.white)
                         {
                             valid = true;
+                            playerManager.currentTurn = colorTurn.black;
                             playerManager.RemovePieceFromBoard(checkSpace.currentPiece);
                             if (spaceToMove.location.y == 7 && !pieceToMove.isKing)
                             {
@@ -236,13 +246,14 @@ public class PieceManager : MonoBehaviour
                 if (checkSpace.currentPiece != null && spaceToMove.currentPiece == null)
                 {
                     //check direction and back only if king
-                    if (pieceToMove._color == SpaceColor.white)
+                    if (pieceToMove._color == SpaceColor.white && playerManager.currentTurn == colorTurn.white)
                     {
                         if (pieceToMove.isKing)
                         {
                             if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color)
                             {
                                 valid = true;
+                                playerManager.currentTurn = colorTurn.black;
                                 playerManager.RemovePieceFromBoard(checkSpace.currentPiece);
                             }
                         }
@@ -250,9 +261,10 @@ public class PieceManager : MonoBehaviour
                     else
                     {
                         //check to make sure that the pieces aren't of the same color
-                        if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color)
+                        if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color && playerManager.currentTurn == colorTurn.black)
                         {
                             valid = true;
+                            playerManager.currentTurn = colorTurn.white;
                             playerManager.RemovePieceFromBoard(checkSpace.currentPiece);
                             if (spaceToMove.location.y == 0 && !pieceToMove.isKing)
                             {
@@ -277,13 +289,14 @@ public class PieceManager : MonoBehaviour
                 if (checkSpace.currentPiece != null && spaceToMove.currentPiece == null)
                 {
                     //check direction and back only if king
-                    if (pieceToMove._color == SpaceColor.black)
+                    if (pieceToMove._color == SpaceColor.black && playerManager.currentTurn == colorTurn.black)
                     {
                         if (pieceToMove.isKing)
                         {
                             if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color)
                             {
                                 valid = true;
+                                playerManager.currentTurn = colorTurn.white;
                                 playerManager.RemovePieceFromBoard(checkSpace.currentPiece);
                             }
                         }
@@ -291,9 +304,10 @@ public class PieceManager : MonoBehaviour
                     else
                     {
                         //check to make sure that the pieces aren't of the same color
-                        if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color)
+                        if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color && playerManager.currentTurn == colorTurn.white)
                         {
                             valid = true;
+                            playerManager.currentTurn = colorTurn.black;
                             playerManager.RemovePieceFromBoard(checkSpace.currentPiece);
                             if (spaceToMove.location.y == 7 && !pieceToMove.isKing)
                             {
@@ -319,13 +333,14 @@ public class PieceManager : MonoBehaviour
                 if (checkSpace.currentPiece != null && spaceToMove.currentPiece == null)
                 {
                     //check direction and back only if king
-                    if (pieceToMove._color == SpaceColor.white)
+                    if (pieceToMove._color == SpaceColor.white && playerManager.currentTurn == colorTurn.white)
                     {
                         if (pieceToMove.isKing)
                         {
                             if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color)
                             {
                                 valid = true;
+                                playerManager.currentTurn = colorTurn.black;
                                 playerManager.RemovePieceFromBoard(checkSpace.currentPiece);
                             }
                         }
@@ -333,9 +348,10 @@ public class PieceManager : MonoBehaviour
                     else
                     {
                         //check to make sure that the pieces aren't of the same color
-                        if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color)
+                        if (checkSpace.currentPiece.GetComponent<Piece>()._color != selectedPiece.GetComponent<Piece>()._color && playerManager.currentTurn == colorTurn.black)
                         {
                             valid = true;
+                            playerManager.currentTurn = colorTurn.white;
                             playerManager.RemovePieceFromBoard(checkSpace.currentPiece);
                             if (spaceToMove.location.y == 0 && !pieceToMove.isKing)
                             {
