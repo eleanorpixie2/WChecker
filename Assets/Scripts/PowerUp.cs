@@ -8,17 +8,24 @@ using UnityEngine.UI;
 public class PowerUp : MonoBehaviour
 {
     public PlayerManager playerManager;
+
     public Animator animWhite;
     public Animator animBlack;
+
     public Button blackPowerUpRevive;
     public Button WhitePowerUpRevive;
+
     public Board board;
+
     public GameObject whitePiece;
     public GameObject blackPiece;
+
     private int numberOfKillsWhitePlayer;
     private int numberOfKillsBlackPlayer;
+
     private int currentWhitePieces;
     private int currentBlackPieces;
+
     private bool canChoosePowerUpWhitePlayer;
     private bool canChoosePowerUpBlackPlayer;
     // Start is called before the first frame update
@@ -33,15 +40,16 @@ public class PowerUp : MonoBehaviour
         numberOfKillsBlackPlayer = 0;
 
         //intial amount of pieces on the board
-        currentWhitePieces = playerManager.numberOfWhitePiecesOnBoard;
-        currentBlackPieces = playerManager.numberOfBlackPiecesOnBoard;
+        currentWhitePieces = 12;
+        currentBlackPieces = 12;
 
         Button btnBlack = blackPowerUpRevive.GetComponent<Button>();
         btnBlack.onClick.AddListener(TaskOnClick2);
+        //btnBlack.enabled= false;
 
         Button btnWhite = WhitePowerUpRevive.GetComponent<Button>();
         btnWhite.onClick.AddListener(TaskOnClick);
-        print(whitePiece);
+        //btnWhite.enabled = false;
 
 
     }
@@ -50,6 +58,10 @@ public class PowerUp : MonoBehaviour
     {
         if (playerManager.currentTurn == colorTurn.black && canChoosePowerUpBlackPlayer)
         {
+            canChoosePowerUpBlackPlayer = false;
+            numberOfKillsBlackPlayer = 0;
+            animBlack.SetInteger("Kills", numberOfKillsBlackPlayer);
+
             GameObject space = null;
             Piece p = blackPiece.GetComponent<Piece>();
             foreach (GameObject bs in GameObject.FindGameObjectsWithTag("Space"))
@@ -62,6 +74,7 @@ public class PowerUp : MonoBehaviour
                     }
                 }
             }
+
             p.currentSpace = space.GetComponent<BoardSpace>();
             p._color = SpaceColor.black;
             p.isKing = false;
@@ -78,7 +91,7 @@ public class PowerUp : MonoBehaviour
     {
         if (playerManager.currentTurn == colorTurn.white && canChoosePowerUpWhitePlayer)
         {
-            print(whitePiece);
+            canChoosePowerUpWhitePlayer = false;
             GameObject space = null;
             Piece p = whitePiece.GetComponent<Piece>();
             foreach (GameObject bs in GameObject.FindGameObjectsWithTag("Space"))
@@ -100,6 +113,9 @@ public class PowerUp : MonoBehaviour
             space.GetComponent<BoardSpace>().SetCurrentPiece(piece);
             playerManager.numberOfWhitePiecesOnBoard++;
             playerManager.UpdateText();
+
+            numberOfKillsWhitePlayer = 0;
+            animWhite.SetInteger("Kills", numberOfKillsWhitePlayer);
         }
     }
 
@@ -108,44 +124,46 @@ public class PowerUp : MonoBehaviour
     void Update()
     {
         //white pieces turn
-        if(playerManager.currentTurn==colorTurn.white)
-        {
-            //if pieces have been removed
-            if (playerManager.numberOfBlackPiecesOnBoard != currentBlackPieces)
-            {
-                //get how many pieces have been removed from the opponent
-                int numberOfKills = currentBlackPieces - playerManager.numberOfBlackPiecesOnBoard;
-                //increase the number of kills
-                numberOfKillsBlackPlayer += numberOfKills;
-                //reset the current amount
-                currentBlackPieces = playerManager.numberOfBlackPiecesOnBoard;
-                animWhite.SetInteger("Kills", numberOfKillsBlackPlayer);
-                if(numberOfKillsBlackPlayer >= 4)
-                {
-                    canChoosePowerUpWhitePlayer = true;
-                    numberOfKills = 4;
-                }
-            }
-        }
-        else if (playerManager.currentTurn == colorTurn.black)
-        {
-            //if pieces have been removed
-            if (playerManager.numberOfWhitePiecesOnBoard != currentWhitePieces)
-            {
-                //get how many pieces have been removed from the opponent
-                int numberOfKills = currentWhitePieces - playerManager.numberOfWhitePiecesOnBoard;
-                //increase the number of kills
-                numberOfKillsWhitePlayer += numberOfKills;
-                //reset the current amount
-                currentWhitePieces = playerManager.numberOfWhitePiecesOnBoard;
-                animBlack.SetInteger("Kills", numberOfKillsWhitePlayer);
-                if (numberOfKillsWhitePlayer >= 4 && playerManager.numberOfWhitePiecesOnBoard < 12)
-                {
-                    canChoosePowerUpWhitePlayer = true;
-                    numberOfKills = 4;
-                }
-            }
-        }
 
+        //if pieces have been removed
+        if (playerManager.numberOfBlackPiecesOnBoard != currentBlackPieces)
+        {
+            //get how many pieces have been removed from the opponent
+            int numberOfKills = currentBlackPieces - playerManager.numberOfBlackPiecesOnBoard;
+
+            //increase the number of kills
+            numberOfKillsBlackPlayer += numberOfKills;
+
+            //reset the current amount
+            currentBlackPieces = playerManager.numberOfBlackPiecesOnBoard;
+            animBlack.SetInteger("Kills", numberOfKillsBlackPlayer);
+
+            if (numberOfKillsBlackPlayer >= 4)
+            {
+                canChoosePowerUpBlackPlayer = true;
+                numberOfKills = 4;
+            }
+        }
+        //if pieces have been removed
+        if (playerManager.numberOfWhitePiecesOnBoard != currentWhitePieces)
+        {
+            //get how many pieces have been removed from the opponent
+            int numberOfKills = currentWhitePieces - playerManager.numberOfWhitePiecesOnBoard;
+
+            //increase the number of kills
+            numberOfKillsWhitePlayer += numberOfKills;
+
+            //reset the current amount
+            currentWhitePieces = playerManager.numberOfWhitePiecesOnBoard;
+            animWhite.SetInteger("Kills", numberOfKillsWhitePlayer);
+
+            if (numberOfKillsWhitePlayer >= 4 && playerManager.numberOfWhitePiecesOnBoard < 12)
+            {
+                canChoosePowerUpWhitePlayer = true;
+                numberOfKills = 4;
+            }
+        }
     }
+
+
 }

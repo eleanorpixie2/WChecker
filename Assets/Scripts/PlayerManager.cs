@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CameraRotation();
+        //CameraRotation();
         //currentPos = whitePiecesSide.transform.position;
 
         if (numberOfBlackPiecesOnBoard <= 0)
