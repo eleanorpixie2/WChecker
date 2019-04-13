@@ -103,7 +103,7 @@ public class SceneManagement : MonoBehaviour
     //loads game
     public static void TaskOnClick5()
     {
-        SceneManager.LoadScene("PlayScene");
+        SceneManager.LoadScene("LogicScene");
     }
 
     //loads win scene
