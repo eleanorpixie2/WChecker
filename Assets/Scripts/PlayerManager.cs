@@ -41,36 +41,33 @@ public class PlayerManager : MonoBehaviour
         }
         if(currentTurn==colorTurn.white && !whitePiecesSide.enabled)
         {
-            whitePiecesSide.enabled = true;
-            blackPiecesSide.enabled = false;
+            //whitePiecesSide.enabled = true;
+            //blackPiecesSide.enabled = false;
         }
         else if (currentTurn == colorTurn.black && !blackPiecesSide.enabled)
         {
-            whitePiecesSide.enabled = false;
-            blackPiecesSide.enabled = true;
+            //whitePiecesSide.enabled = false;
+            //blackPiecesSide.enabled = true;
         }
     }
 
-    public void RemovePieceFromBoard(GameObject piece)
+    public void RemovePieceFromBoard(Piece bp, BoardSpace bs)
     {
-        //Get the piece component of the game object
-        Piece _piece = piece.GetComponent<Piece>();
-        //get the space that it is on
-        BoardSpace space = _piece.currentSpace;
-        //reset the space
-        space.SetCurrentPiece();
+        print($"Piece: {bp}, BoardSpace: {bs}");
         //if black then decrease the number of pieces and update text accordingly
-        if(_piece._color==SpaceColor.black)
+        if(bp._color==SpaceColor.black)
         {
             numberOfBlackPiecesOnBoard--;
-            Destroy(piece);
+            Destroy(bp.gameObject);
+            bs.SetCurrentPiece();
             blackNumTxt.text = $"Black Left: {numberOfBlackPiecesOnBoard}";
         }
         //if white then decrease the number of pieces and update text accordingly
-        else if(_piece._color==SpaceColor.white)
+        else if(bp._color==SpaceColor.white)
         {
             numberOfWhitePiecesOnBoard--;
-            Destroy(piece);
+            Destroy(bp.gameObject);
+            bs.SetCurrentPiece();
             whiteNumTxt.text = $"White Left: {numberOfWhitePiecesOnBoard}";
         }
     }

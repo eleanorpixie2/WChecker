@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Board : MonoBehaviour
@@ -27,7 +28,7 @@ public class Board : MonoBehaviour
         PopulateBoard();
         board = GameObject.FindGameObjectsWithTag("Space");
 
-        SpawnPieces();
+        //SpawnPieces();
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class Board : MonoBehaviour
         return null;
     }
 
-    void SpawnPieces()
+    public void SpawnPieces()
     {
         //columns
         for (int y = 0; y < 8; y++)
@@ -67,12 +68,13 @@ public class Board : MonoBehaviour
                     if (space.GetComponent<BoardSpace>()._spaceColor == SpaceColor.black)
                     {
                         whitePiece.currentSpace = space.GetComponent<BoardSpace>();
-                        space.GetComponent<BoardSpace>().SetCurrentPiece(whitePiece.gameObject);
                         whitePiece._color = SpaceColor.white;
                         whitePiece.isKing = false;
                         whitePiece.gameObject.transform.position = spaceLocation;
                         whitePieces.Add(whitePiece);
-                        Instantiate(whitePiece.gameObject);
+                        GameObject piece = (GameObject)PrefabUtility.InstantiatePrefab(whitePiece.gameObject);
+                        PrefabUtility.UnpackPrefabInstance(piece, PrefabUnpackMode.Completely, InteractionMode.UserAction);
+                        space.GetComponent<BoardSpace>().SetCurrentPiece(piece);
                     }
                 }
                 //empty
@@ -90,12 +92,13 @@ public class Board : MonoBehaviour
                     if (space.GetComponent<BoardSpace>()._spaceColor == SpaceColor.black)
                     {
                         blackPiece.currentSpace = space.GetComponent<BoardSpace>();
-                        space.GetComponent<BoardSpace>().SetCurrentPiece(blackPiece.gameObject);
                         blackPiece._color = SpaceColor.black;
                         blackPiece.isKing = false;
                         blackPiece.gameObject.transform.position = spaceLocation;
                         blackPieces.Add(blackPiece);
-                        Instantiate(blackPiece.gameObject);
+                        GameObject piece = (GameObject)PrefabUtility.InstantiatePrefab(blackPiece.gameObject);
+                        PrefabUtility.UnpackPrefabInstance(piece, PrefabUnpackMode.Completely, InteractionMode.UserAction);
+                        space.GetComponent<BoardSpace>().SetCurrentPiece(piece);
                     }
                 }
                 //move to the right
@@ -104,7 +107,7 @@ public class Board : MonoBehaviour
             //reset x
             spaceLocation.x = intialX;
             //move up
-            spaceLocation.z +=1.42f;
+            spaceLocation.z += 1.42f;
         }
     }
 
