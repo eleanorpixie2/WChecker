@@ -13,7 +13,6 @@ public class PlayerManager : MonoBehaviour
     public Text whiteNumTxt;
     public Text blackNumTxt;
     public Camera whitePiecesSide;
-    public Camera blackPiecesSide;
     public colorTurn currentTurn;
     // Start is called before the first frame update
     void Start()
@@ -24,14 +23,33 @@ public class PlayerManager : MonoBehaviour
         blackNumTxt.text = $"Black Left: {numberOfBlackPiecesOnBoard}";
         whiteNumTxt.text = $"White Left: {numberOfWhitePiecesOnBoard}";
         currentTurn = colorTurn.white;
-        whitePiecesSide.enabled = true;
-        blackPiecesSide.enabled = false;
+        whitePiecesSide = Camera.main;
+        currentPos = whitePiecesSide.transform.position;
+        whiteSide = currentPos;
+        blackSide = new Vector3(2.19f, 8.59f, 11.68f);
     }
+
+    public float degrees = 0;
+    public Vector3 currentPos;
+    private Vector3 whiteSide;
+    private Vector3 blackSide;
 
     // Update is called once per frame
     void Update()
     {
-        if(numberOfBlackPiecesOnBoard<=0)
+        degrees = 20 * Time.deltaTime;
+
+        if (currentTurn == colorTurn.white)
+        {
+            whitePiecesSide.transform.RotateAround(new Vector3(2.13f, 0), Vector3.up, degrees);
+        }
+        else if (currentTurn == colorTurn.black)
+        {
+            whitePiecesSide.transform.RotateAround(new Vector3(2.13f, 0), Vector3.up, degrees);
+        }
+        currentPos = whitePiecesSide.transform.position;
+
+        if (numberOfBlackPiecesOnBoard<=0)
         {
             //lose
         }
@@ -39,16 +57,17 @@ public class PlayerManager : MonoBehaviour
         {
             //lose
         }
-        if(currentTurn==colorTurn.white && !whitePiecesSide.enabled)
-        {
-            //whitePiecesSide.enabled = true;
-            //blackPiecesSide.enabled = false;
-        }
-        else if (currentTurn == colorTurn.black && !blackPiecesSide.enabled)
-        {
-            //whitePiecesSide.enabled = false;
-            //blackPiecesSide.enabled = true;
-        }
+        //if(currentTurn==colorTurn.white)
+        //{
+        //    //whitePiecesSide.enabled = true;
+        //    //blackPiecesSide.enabled = false;
+        //    //whitePiecesSide.transform.RotateAround(Vector3.zero, Vector3.up, degrees);
+        //}
+        //else if (currentTurn == colorTurn.black)
+        //{
+        //    //whitePiecesSide.enabled = false;
+        //    //blackPiecesSide.enabled = true;
+        //}
     }
 
     public void RemovePieceFromBoard(Piece bp, BoardSpace bs)
