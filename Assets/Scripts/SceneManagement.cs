@@ -69,7 +69,7 @@ public class SceneManagement : MonoBehaviour
     void TaskOnClick()
     {
         source.PlayOneShot(click, .5f);
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Instructions");
     }
 
     //exits game
@@ -83,7 +83,7 @@ public class SceneManagement : MonoBehaviour
     void TaskOnClick2()
     {
         source.PlayOneShot(click, .5f);
-        SceneManager.LoadScene("StartMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     //loads credits
@@ -103,7 +103,7 @@ public class SceneManagement : MonoBehaviour
     //loads game
     public static void TaskOnClick5()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("PlayScene");
     }
 
     //loads win scene
